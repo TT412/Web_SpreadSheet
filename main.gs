@@ -1,5 +1,9 @@
-function doGet() { 
-  return HtmlService.createTemplateFromFile("testPage").evaluate(); 
+function doGet(e) {
+  if(!e.parameter.p) {
+    return HtmlService.createTemplateFromFile("testPage").evaluate(); 
+  } else {
+    return HtmlService.createTemplateFromFile(e.parameter.p).evaluate();
+  }
 }
 
 function include(filename) {
@@ -8,4 +12,9 @@ function include(filename) {
 
 function pageName() {
   return 'testPage.html';
+}
+
+function getScriptUrl() {
+  var url = ScriptApp.getService().getUrl();
+  return url;
 }
